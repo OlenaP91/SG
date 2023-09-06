@@ -206,7 +206,12 @@ body {
 
 .header__bg {
   position: absolute;
-  background: url("/img/Zig Zag.png") right bottom no-repeat, url("/img/main_cover.jpg") 50%/cover no-repeat;
+  background-image: 
+  url('../img/Zig Zag.png'), 
+  url("../img/main_cover.jpg");
+  background-repeat: no-repeat;
+  background-position: right bottom,50%;
+  background-size: auto auto, cover;
   width: 100%;
   height: 720px;
 }
@@ -1041,7 +1046,8 @@ body {
   }
 }
 .welcome {
-  background: url("/img/cover_02.jpg") 0 0/cover no-repeat;
+  background: url("../img/cover_02.jpg");
+  background-size: cover;
   max-height: 506px;
   margin-top: 70px;
   margin-bottom: 90px;
