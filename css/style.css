@@ -153,7 +153,9 @@ body {
   font-family: "Benzin", sans-serif;
   background: #f4f4f4;
 }
-
+body._lock {
+  overflow: hidden;
+}
 .container {
   max-width: 1200px;
   padding: 0 40px;
@@ -198,7 +200,7 @@ body {
   color: #232121;
 }
 
-.header {
+.header{
   margin-bottom: 20px;
   min-height: 720px;
   position: relative;
@@ -223,6 +225,11 @@ body {
 }
 
 .header__top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
   min-height: 140px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -233,10 +240,12 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 15px;
+  transition: all 0.3s ease 0s;
 }
-
+.header__top.scroll {
+  background-color: rgba(199, 41, 41, 0.5);
+}
 .menu__list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -280,6 +289,7 @@ body {
 
 .header__bottom-body {
   max-width: 500px;
+  margin-top: 150px;
 }
 
 .header__bottom-title {
@@ -396,34 +406,36 @@ body {
   .icon-menu span {
     top: calc(50% - 1px);
   }
-  .menu-open .icon-menu span {
+  .icon-menu.menu-open  span {
     width: 0;
   }
-  .menu-open .icon-menu::before {
+  .icon-menu.menu-open::before {
     top: calc(50% - 1px);
     -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
   }
-  .menu-open .icon-menu::after {
+  .icon-menu.menu-open::after {
     bottom: calc(50% - 1px);
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
   }
-  .header__menu {
+  .menu__body {
     padding: 100px 15px 30px 15px;
     position: fixed;
     z-index: 2;
     width: 100%;
     height: 100%;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.6);
     left: -100%;
     top: 0;
     overflow: auto;
     -webkit-transition: left 0.3s ease 0s;
     transition: left 0.3s ease 0s;
-    pointer-events: none;
   }
-  .header__menu::before {
+  .menu__body.menu-open {
+    left: 0;
+  }
+  .menu__body::before {
     content: "";
     width: 100%;
     position: fixed;
@@ -438,11 +450,12 @@ body {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
     text-align: center;
+    z-index: 2;
   }
   .menu__list a {
     font-size: 32px;
